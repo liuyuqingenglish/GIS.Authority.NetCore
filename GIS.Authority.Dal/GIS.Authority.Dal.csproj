@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>Svn</SccProjectName>
+    <SccProvider>SubversionScc</SccProvider>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccLocalPath>Svn</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Version>3.1.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="IBll\ve-7BF1.tmp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Base\IBaseDal\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="5.1.2" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="Dapper" Version="2.0.35" />
+    <PackageReference Include="DapperExtensions.NetCore" Version="2.0.7" />
+    <PackageReference Include="Npgsql" Version="4.1.3.1" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GIS.Authority.Common\GIS.Authority.Common.csproj" />
+    <ProjectReference Include="..\GIS.Authority.Contract\GIS.Authority.Contract.csproj" />
+    <ProjectReference Include="..\GIS.Authority.Entity\GIS.Authority.Entity.csproj" />
+  </ItemGroup>
+
+</Project>
