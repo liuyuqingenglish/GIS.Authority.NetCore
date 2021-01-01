@@ -1,15 +1,21 @@
 ﻿using DapperExtensions.Mapper;
 using GIS.Authority.Entity.Base.BaseEntity;
+using System;
 namespace GIS.Authority.Entity
 {
     /// <summary>
     /// 部门
     /// </summary>
-    public class Organization : CommonEntity
+    public class Organization : DisableEntity
     {
-        public Organization():base()
+        public Organization() : base()
         {
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Guid SystemId { get; set; }
     }
 
     /// <summary>

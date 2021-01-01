@@ -6,7 +6,7 @@ namespace GIS.Authority.Entity
     /// <summary>
     /// 部门
     /// </summary>
-    public class Department : CommonEntity
+    public class Department : DisableEntity
     {
         /// <summary>
         /// 给XPath设默认值

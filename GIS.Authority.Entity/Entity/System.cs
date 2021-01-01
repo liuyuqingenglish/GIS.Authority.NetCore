@@ -5,7 +5,7 @@ namespace GIS.Authority.Entity
     /// <summary>
     /// 部门
     /// </summary>
-    public class System : CommonEntity
+    public class System : DisableEntity
     {
         /// <summary>
         /// 系统代码

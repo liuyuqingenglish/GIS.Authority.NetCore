@@ -5,7 +5,7 @@ namespace GIS.Authority.Entity
     /// <summary>
     /// 模块
     /// </summary>
-    public class RolePermission : DisableEntity
+    public class RolePermission : OperatorEntity
     {
         /// <summary>
         /// 给XPath设默认值
@@ -17,7 +17,7 @@ namespace GIS.Authority.Entity
         /// <summary>
         /// 组织id
         /// </summary>
-        public int RoleId { get; set; }
+        public int RoleGroupId { get; set; }
 
         /// <summary>
         /// 模型id

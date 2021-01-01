@@ -5,12 +5,12 @@ namespace GIS.Authority.Entity
     /// <summary>
     /// 模块
     /// </summary>
-    public class Role : DisableEntity
+    public class RoleGroup : DisableEntity
     {
         /// <summary>
         /// 给XPath设默认值
         /// </summary>
-        public Role()
+        public RoleGroup()
         {
         }
 
@@ -23,14 +23,14 @@ namespace GIS.Authority.Entity
     /// <summary>
     /// Mapper
     /// </summary>
-    public sealed class RoleMapper : ClassMapper<Role>
+    public sealed class RoleGroupMapper : ClassMapper<Role>
     {
         /// <summary>
         /// DepartmentMapper
         /// </summary>
-        public RoleMapper()
+        public RoleGroupMapper()
         {
-            Table("Role");
+            Table("RoleGroup");
             AutoMap();
         }
     }
