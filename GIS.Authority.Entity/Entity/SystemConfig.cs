@@ -6,8 +6,19 @@ namespace GIS.Authority.Entity
     /// <summary>
     /// 部门
     /// </summary>
-    public class SystemConfig : DisableEntity
+    public class SystemConfig : OperatorEntity
     {
+
+
+        /// <summary>
+        /// 配置类型
+        /// </summary>
+        public string LastUpdateTime { get; set; }
+
+        /// <summary>
+        /// 配置数据
+        /// </summary>
+        public string CreateTime { get; set; }
         /// <summary>
         /// 配置类型
         /// </summary>
@@ -38,10 +49,6 @@ namespace GIS.Authority.Entity
             Table("SystemConfig");
             ///指定主键
             Map(x => x.Id).Key(KeyType.Guid);
-            Map(x => x.Remark).Ignore();
-            Map(x => x.Name).Ignore();
-            Map(x => x.IsDelete).Ignore();
-            Map(x => x.Disable).Ignore();
             ///忽略remark列
             //Map(x => x.Remark).Ignore();
             ///自动映射

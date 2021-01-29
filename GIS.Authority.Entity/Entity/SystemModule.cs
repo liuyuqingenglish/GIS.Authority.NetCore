@@ -6,7 +6,7 @@ namespace GIS.Authority.Entity
     /// <summary>
     /// 部门
     /// </summary>
-    public class SystemModule : DisableEntity
+    public class SystemModule : CommonEntity
     {
         /// <summary>
         /// 系统id
@@ -35,8 +35,6 @@ namespace GIS.Authority.Entity
             ///指定主键
             Map(x => x.Id).Key(KeyType.Guid);
             Map(x => x.Name).Ignore();
-            Map(x => x.IsDelete).Ignore();
-            Map(x => x.Disable).Ignore();
             ///忽略remark列
             //Map(x => x.Remark).Ignore();
             ///自动映射

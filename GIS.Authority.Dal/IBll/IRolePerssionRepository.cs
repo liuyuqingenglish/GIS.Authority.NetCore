@@ -23,13 +23,13 @@ using GIS.Authority.Dal.Base.IBaseDal;
 
 namespace GIS.Authority.Dal
 {
-    public interface IRolePerssionRepository : IBasicRepository<RolePermission>
+    public interface IRolePerssionRepository : IBasicRepository<RoleGroupPermission>
     {
-        List<RolePermission> GetRolePerssion(PredicateGroup group, PageQuery query);
+        List<RoleGroupPermission> GetRolePerssion(PredicateGroup group, PageQuery query);
 
-        bool AddRolePerssion(RolePermission rolePerssion);
+        bool AddRolePerssion(RoleGroupPermission rolePerssion);
 
-        bool UpdateRolePerssion(RolePermission rolePerssion);
+        bool UpdateRolePerssion(RoleGroupPermission rolePerssion);
 
         bool DeleteRolePerssion(PredicateGroup group);
     }

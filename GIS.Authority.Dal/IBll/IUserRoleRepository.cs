@@ -23,16 +23,16 @@ using System.Collections.Generic;
 
 namespace GIS.Authority.Dal
 {
-    public interface IUserRoleRepository : IBasicRepository<UserRole>
+    public interface IUserRoleGroupRepository : IBasicRepository<UserRoleGroup>
     {
-        PageResult<UserRole> GetUserRole(PredicateGroup group, PageQuery query);
+        PageResult<UserRoleGroup> GetUserRoleGroup(PredicateGroup group, PageQuery query);
 
-        bool AddUserRole(UserRole userRole);
+        bool AddUserRoleGroup(UserRoleGroup UserRoleGroup);
 
-        bool UpdateUserRole(UserRole userRole);
+        bool UpdateUserRoleGroup(UserRoleGroup UserRoleGroup);
 
-        bool DeleteUserRole(PredicateGroup group);
+        bool DeleteUserRoleGroup(PredicateGroup group);
 
-        List<UserRole> GetUserRole(PredicateGroup group);
+        List<UserRoleGroup> GetUserRoleGroup(PredicateGroup group);
     }
 }

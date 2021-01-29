@@ -24,29 +24,29 @@ using System.Linq;
 
 namespace GIS.Authority.Dal
 {
-    public class UserRoleRepository : BasicRepository<UserRole>, IUserRoleRepository
+    public class UserRoleGroupRepository : BasicRepository<UserRoleGroup>, IUserRoleGroupRepository
     {
-        public bool AddUserRole(UserRole userRole)
+        public bool AddUserRoleGroup(UserRoleGroup UserRoleGroup)
         {
-            return base.Insert(userRole);
+            return base.Insert(UserRoleGroup);
         }
 
-        public bool DeleteUserRole(PredicateGroup group)
+        public bool DeleteUserRoleGroup(PredicateGroup group)
         {
             return base.Delete(group);
         }
 
-        public PageResult<UserRole> GetUserRole(PredicateGroup group, PageQuery query)
+        public PageResult<UserRoleGroup> GetUserRoleGroup(PredicateGroup group, PageQuery query)
         {
             return base.FindByPage(group, query);
         }
 
-        public bool UpdateUserRole(UserRole userRole)
+        public bool UpdateUserRoleGroup(UserRoleGroup UserRoleGroup)
         {
-            return base.Update(userRole);
+            return base.Update(UserRoleGroup);
         }
 
-        public List<UserRole> GetUserRole(PredicateGroup group)
+        public List<UserRoleGroup> GetUserRoleGroup(PredicateGroup group)
         {
             return base.GetList(group).ToList();
         }
