@@ -25,9 +25,9 @@ using System.Text;
 
 namespace GIS.Authority.Dal
 {
-    public class RolePerssionRepository : BasicRepository<RolePermission>, IRolePerssionRepository
+    public class RolePerssionRepository : BasicRepository<RoleGroupPermission>, IRolePerssionRepository
     {
-        public bool AddRolePerssion(RolePermission rolePerssion)
+        public bool AddRolePerssion(RoleGroupPermission rolePerssion)
         {
             return base.Insert(rolePerssion);
         }
@@ -37,12 +37,12 @@ namespace GIS.Authority.Dal
             return base.Delete(group);
         }
 
-        public List<RolePermission> GetRolePerssion(PredicateGroup group, PageQuery query)
+        public List<RoleGroupPermission> GetRolePerssion(PredicateGroup group, PageQuery query)
         {
             return base.GetPager(group, query).ToList();
         }
 
-        public bool UpdateRolePerssion(RolePermission rolePerssion)
+        public bool UpdateRolePerssion(RoleGroupPermission rolePerssion)
         {
             return base.Update(rolePerssion);
         }
