@@ -19,6 +19,8 @@ namespace GIS.Authority.Entity
 {
     public class RoleDto : BaseDto
     {
-        public string OrganizeId { get; set; }
+        public string OrganizationId { get; set; }
+
+        public int RoleGroup { get; set; }
     }
 }

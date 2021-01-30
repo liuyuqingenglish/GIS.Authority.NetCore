@@ -85,7 +85,7 @@ namespace GIS.Authority.Entity
         /// <summary>
         /// 权限模块
         /// </summary>
-        public List<RolePermissionDto> Modules { get; set; }
+        public List<RoleGroupPermissionDto> Modules { get; set; }
 
         /// <summary>
         /// 过期时间

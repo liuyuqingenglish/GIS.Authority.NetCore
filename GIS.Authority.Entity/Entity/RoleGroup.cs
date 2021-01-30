@@ -1,5 +1,7 @@
 ﻿using DapperExtensions.Mapper;
 using GIS.Authority.Entity.Base.BaseEntity;
+using System;
+
 namespace GIS.Authority.Entity
 {
     /// <summary>
@@ -17,7 +19,12 @@ namespace GIS.Authority.Entity
         /// <summary>
         /// 组织id
         /// </summary>
-        public int OrganizationId { get; set; }
+        public int RoleType { get; set; }
+
+        /// <summary>
+        /// 组织id
+        /// </summary>
+        public Guid OrganizationId { get; set; }
     }
 
     /// <summary>
@@ -31,6 +38,7 @@ namespace GIS.Authority.Entity
         public RoleGroupMapper()
         {
             Table("RoleGroup");
+         
             AutoMap();
         }
     }

@@ -22,7 +22,12 @@ namespace GIS.Authority.Entity
         /// <summary>
         /// 组织名称
         /// </summary>
-        public string OrganizeName;
+        public string OrganizationName;
+
+        /// <summary>
+        /// 组织名称
+        /// </summary>
+        public string OrganizationId;
 
         /// <summary>
         /// 父部门名称
