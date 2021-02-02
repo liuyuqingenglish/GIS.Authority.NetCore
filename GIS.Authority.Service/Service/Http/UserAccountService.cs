@@ -49,27 +49,27 @@ namespace GIS.Authority.Service
             return Unit.SystemRepository.Delete(group);
         }
 
-        public List<UserAccountDto> GetUserAccountDto(ProtocolQueryUserAccount query)
+        public List<UserAccountDto> GetUserAccountDto(PageQueryCondition<ProtocolQueryUserAccount> query)
         {
             PredicateGroup group = new PredicateGroup();
             group.Operator = GroupOperator.And;
-            if (!string.IsNullOrEmpty(query.OrganizeId))
+            if (!string.IsNullOrEmpty(query.Condition.OrganizeId))
             {
-                group.Predicates.Add(Predicates.Field<UserAccount>(d => d.OrganizationId, Operator.Eq, query.OrganizeId));
+                group.Predicates.Add(Predicates.Field<UserAccount>(d => d.OrganizationId, Operator.Eq, query.Condition.OrganizeId));
             }
-            if (!string.IsNullOrEmpty(query.DepartmentId))
+            if (!string.IsNullOrEmpty(query.Condition.DepartmentId))
             {
-                group.Predicates.Add(Predicates.Field<UserAccount>(d => d.DepartmentId, Operator.Eq, query.DepartmentId));
+                group.Predicates.Add(Predicates.Field<UserAccount>(d => d.DepartmentId, Operator.Eq, query.Condition.DepartmentId));
             }
-            if (!string.IsNullOrEmpty(query.UserId))
+            if (!string.IsNullOrEmpty(query.Condition.UserId))
             {
-                group.Predicates.Add(Predicates.Field<UserAccount>(d => d.Id, Operator.Eq, query.UserId));
+                group.Predicates.Add(Predicates.Field<UserAccount>(d => d.Id, Operator.Eq, query.Condition.UserId));
             }
-            if (!string.IsNullOrEmpty(query.UserName))
+            if (!string.IsNullOrEmpty(query.Condition.UserName))
             {
-                group.Predicates.Add(Predicates.Field<UserAccount>(d => d.Name, Operator.Like, query.UserName));
+                group.Predicates.Add(Predicates.Field<UserAccount>(d => d.Name, Operator.Like, query.Condition.UserName));
             }
-            return Unit.UserRepository.GetUserAccount(group, query.Query).ToListDto<GIS.Authority.Entity.UserAccount, UserAccountDto>().ToList();
+            return Unit.UserRepository.GetUserAccount(group, query.Condition.Query).ToListDto<GIS.Authority.Entity.UserAccount, UserAccountDto>().ToList();
         }
 
         public bool UpdateUserAccount(UserAccountDto dto)

@@ -2,12 +2,12 @@
 using GIS.Authority.Contract;
 using System;
 using System.Collections.Generic;
-
+using GIS.Authority.Common;
 namespace GIS.Authority.Service
 {
     public interface IUserAccountService
     {
-        List<UserAccountDto> GetUserAccountDto(ProtocolQueryUserAccount query);
+        PageResult<UserAccountDto> GetUserAccountDto(PageQueryCondition<ProtocolQueryUserAccount> query);
 
         bool AddUserAccount(UserAccountDto dto);
 

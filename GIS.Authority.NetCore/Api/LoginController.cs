@@ -1,7 +1,7 @@
 ﻿using GIS.Authority.Entity;
 using GIS.Authority.Service;
 using Microsoft.AspNetCore.Mvc;
-
+using System.Net.Http;
 namespace GIS.Authority.NetCore.Api
 {
     [Route("api/[controller]")]
@@ -36,7 +36,7 @@ namespace GIS.Authority.NetCore.Api
         [HttpGet("Login")]
         public UserAccountDto Login(UserAccountDto dto)
         {
-            return new UserAccountDto();
+            return mLoginService.Login(dto);
         }
     }
 }

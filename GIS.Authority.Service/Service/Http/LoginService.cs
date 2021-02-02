@@ -1,10 +1,18 @@
 ﻿using GIS.Authority.Common;
+using GIS.Authority.Dal.UnitOfWork;
 using GIS.Authority.Entity;
 
 namespace GIS.Authority.Service
 {
-    public class LoginService : ILoginService
+    public class LoginService : BaseService, ILoginService
     {
+        private readonly IUserAccountService userAccountService;
+
+        public LoginService(IUnitOfWork iunit, IUserAccountService service) : base(iunit)
+        {
+            userAccountService = service;
+        }
+
         /// <summary>
         /// 验证
         /// </summary>
@@ -42,7 +50,15 @@ namespace GIS.Authority.Service
 
         public UserAccountDto Login(UserAccountDto dto)
         {
-            throw new System.NotImplementedException();
+            if (string.IsNullOrEmpty(dto.Name) || string.IsNullOrEmpty(dto.Password))
+            {
+                return new UserAccountDto();
+            }
+            UserAccountDto userTemp = userAccountService.GetUserDto(dto.Name, dto.Password);
+            if (userTemp != null)
+            {
+            }
+            return new UserAccountDto();
         }
     }
 }

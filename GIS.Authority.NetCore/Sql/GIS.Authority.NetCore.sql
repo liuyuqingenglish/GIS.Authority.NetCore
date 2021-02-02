@@ -144,7 +144,7 @@ CREATE TABLE IF NOT EXISTS Role(
 	LastUpdateTime TIMESTAMP WITHOUT TIME ZONE,
     CreateUserId UUID,
     LastUpdateUserId UUID,
-	RoleGroup INTEGER NOT NULL,
+	RoleGroup INTEGER[] NOT NULL,
     Name VARCHAR(128),
     Remark VARCHAR(1024),
     Disable BOOLEAN NOT NULL DEFAULT FALSE,
@@ -244,16 +244,16 @@ INSERT INTO useraccount(Id,CreateTime,Name,Account,Code,Password,OrganizationId,
 VALUES(uuid_generate_v1(),now(),'admin','sAdmin','admin','0192023A7BBD73250516F069DF18B500','00000000-0000-0000-0000-000000000000','00000000-0000-0000-0000-000000000000',0,0,0,false);
 
 
-DROP TABLE IF EXISTS UserRoleGroupGroup;
+DROP TABLE IF EXISTS UserRoleGroup;
 --用户角色表
-CREATE TABLE IF NOT EXISTS UserRoleGroupGroup(
+CREATE TABLE IF NOT EXISTS UserRoleGroup(
 	Id UUID PRIMARY KEY NOT NULL,
 	CreateTime TIMESTAMP WITHOUT TIME ZONE,
 	LastUpdateTime TIMESTAMP WITHOUT TIME ZONE,
     CreateUserId UUID,
     LastUpdateUserId UUID,
     UserId UUID NOT NULL,
-    RoleGroup integer[] NOT NULL
+    RoleGroup integer NOT NULL
 );
-CREATE INDEX UserRoleGroup_UserId_Index ON UserRoleGroupGroup(UserId);
-CREATE INDEX UserRoleGroup_RoleId_Index ON UserRoleGroupGroup(RoleGroup);
+CREATE INDEX UserRoleGroup_UserId_Index ON UserRoleGroup(UserId);
+CREATE INDEX UserRoleGroup_RoleId_Index ON UserRoleGroup(RoleGroup);
