@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Linq;
 using GIS.Authority.Entity.Base;
 using GIS.Authority;
+using GIS.Authority.Common;
 namespace GIS.Authority.Common
 {
     /// <summary>
@@ -50,7 +51,7 @@ namespace GIS.Authority.Common
         /// <typeparam name="TResult">输出泛型</typeparam>
         /// <param name="list">输入数组</param>
         /// <returns>输出数组</returns>
-        public static List<TResult> ToListModel<TInput, TResult>(this IEnumerable<TInput> list)
+        public static List<TResult> ToListDto<TInput, TResult>(this IEnumerable<TInput> list)
         {
             return list?.Select(x => x.ToModel<TResult>()).ToList();
         }
@@ -64,7 +65,7 @@ namespace GIS.Authority.Common
         /// <returns>转化翻页结果</returns>
         public static PageResult<TResult> ToPageModel<TInput, TResult>(this PageResult<TInput> pageResult)
         {
-            return new PageResult<TResult> { Total = pageResult.Total, Row = pageResult.Row.ToListModel<TInput, TResult>() };
+            return new PageResult<TResult> { Total = pageResult.Total, Row = pageResult.Row.ToListDto<TInput, TResult>() };
         }
 
         /// <summary>

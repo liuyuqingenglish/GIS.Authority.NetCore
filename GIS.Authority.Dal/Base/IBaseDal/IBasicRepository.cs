@@ -25,7 +25,24 @@ namespace GIS.Authority.Dal.Base.IBaseDal
         /// <param name="pg">pg</param>
         /// <returns>List<T></returns>
         List<T> GetList(PredicateGroup pg);
+
+        /// <summary>
+        /// sdf
+        /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="sql"></param>
+        /// <returns></returns>
+        List<TResult> TransactionResult<TResult>(string sql) where TResult : new();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="group"></param>
+        /// <param name="query"></param>
+        /// <returns></returns>
         IList<T> GetPager(PredicateGroup group, PageQuery query);
+
+
         /// <summary>
         /// 数目
         /// </summary>
@@ -56,6 +73,8 @@ namespace GIS.Authority.Dal.Base.IBaseDal
         /// <param name="conn">数据库连接</param>
         /// <returns>新增实体</returns>
         T Insert(T t, IDbConnection conn = null);
+
+        bool Delete(PredicateGroup group);
 
         /// <summary>
         /// 删除
@@ -110,5 +129,9 @@ namespace GIS.Authority.Dal.Base.IBaseDal
         /// <param name="tableName">表名</param>
         /// <returns>是否存在</returns>
         bool IsTableExists(string tableName);
+
+        List<TResult> GetList<TResult>(string sql) where TResult : new();
+
+        TResult Get<TResult>(string sql) where TResult : new();
     }
 }

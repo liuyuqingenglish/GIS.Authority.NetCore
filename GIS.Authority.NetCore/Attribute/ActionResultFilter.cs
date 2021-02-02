@@ -18,14 +18,14 @@ namespace GIS.Authority.NetCore
 
         public void OnActionExecuted(ActionExecutedContext context)
         {
+            /// 筛选跳过action动作
             var actionDescriptor = context.ActionDescriptor as ControllerActionDescriptor;
-
             if (actionDescriptor.MethodInfo.GetCustomAttributes(typeof(SkipActionAttribute), true).Length > 0)
             {
                 return;
             }
             ServiceResult<object> result = null;
-            Log.LogHelper.AddLog(Log.ELogLevel.Debug, $"远程ip：{context.HttpContext.Request.HttpContext.Connection.RemoteIpAddress}请求地址{context.HttpContext.Request.GetEncodedUrl()},{context.ActionDescriptor.DisplayName}");
+       
             if (context.Exception == null)
             {
                 if (context.HttpContext.Response.StatusCode != (int)HttpStatusCode.OK)
@@ -73,6 +73,16 @@ namespace GIS.Authority.NetCore
 
         public void OnActionExecuting(ActionExecutingContext context)
         {
+        }
+
+        /// <summary>
+        /// 记录日志
+        /// </summary>
+        /// <param name="action"></param>
+        private void RecordLog(ActionExecutedContext context)
+        {
+            Log.LogHelper.AddLog(Log.ELogLevel.Debug, $"远程ip：{context.HttpContext.Request.HttpContext.Connection.RemoteIpAddress},请求地址：{context.HttpContext.Request.GetEncodedUrl()},请求方法:{context.ActionDescriptor.DisplayName}");
+
         }
     }
 }

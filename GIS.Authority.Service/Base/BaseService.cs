@@ -23,7 +23,7 @@ namespace GIS.Authority.Service
     /// <summary>
     /// Service基类
     /// </summary>
-    public class BasicService : IDisposable
+    public class BaseService : IDisposable
     {
         /// <summary>
         /// 工作单元
@@ -34,7 +34,7 @@ namespace GIS.Authority.Service
         /// 构造方法
         /// </summary>
         /// <param name="unit">工作单元</param>
-        public BasicService()
+        public BaseService()
         {
         }
 
@@ -42,7 +42,7 @@ namespace GIS.Authority.Service
         /// 构造方法
         /// </summary>
         /// <param name="unit">工作单元</param>
-        public BasicService(IUnitOfWork unit)
+        public BaseService(IUnitOfWork unit)
         {
             Unit = unit;
         }

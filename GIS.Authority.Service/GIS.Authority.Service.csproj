@@ -15,9 +15,4 @@
     <ProjectReference Include="..\GIS.Authority.Dal\GIS.Authority.Dal.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="IService\Http\" />
-    <Folder Include="Service\Http\" />
-  </ItemGroup>
-
 </Project>

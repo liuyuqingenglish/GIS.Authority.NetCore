@@ -9,7 +9,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GIS.Authority.Common\GIS.Authority.Common.csproj" />
     <ProjectReference Include="..\GIS.Authority.Entity\GIS.Authority.Entity.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Protocol\Http\" />
   </ItemGroup>
 
 </Project>
