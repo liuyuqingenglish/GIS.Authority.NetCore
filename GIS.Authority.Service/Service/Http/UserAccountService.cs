@@ -16,15 +16,15 @@
 */
 
 using DapperExtensions;
+using GIS.Authority.Common;
 using GIS.Authority.Contract;
+using GIS.Authority.Dal.UnitOfWork;
 using GIS.Authority.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using GIS.Authority.Dal.UnitOfWork;
-using GIS.Authority.Dal.Bll;
-using GIS.Authority.Common;
+
 namespace GIS.Authority.Service
 {
     public class UserAccountService : BaseService, IUserAccountService
@@ -49,8 +49,9 @@ namespace GIS.Authority.Service
             return Unit.SystemRepository.Delete(group);
         }
 
-        public List<UserAccountDto> GetUserAccountDto(PageQueryCondition<ProtocolQueryUserAccount> query)
+        public PageResult<UserAccountDto> GetUserAccountDto(PageQueryCondition<ProtocolQueryUserAccount> query)
         {
+            PageResult<UserAccountDto> result = new PageResult<UserAccountDto>();
             PredicateGroup group = new PredicateGroup();
             group.Operator = GroupOperator.And;
             if (!string.IsNullOrEmpty(query.Condition.OrganizeId))
@@ -69,7 +70,9 @@ namespace GIS.Authority.Service
             {
                 group.Predicates.Add(Predicates.Field<UserAccount>(d => d.Name, Operator.Like, query.Condition.UserName));
             }
-            return Unit.UserRepository.GetUserAccount(group, query.Condition.Query).ToListDto<GIS.Authority.Entity.UserAccount, UserAccountDto>().ToList();
+
+            result.Row = Unit.UserRepository.GetUserAccount(group, query.Condition.Query).ToListDto<GIS.Authority.Entity.UserAccount, UserAccountDto>().ToList();
+            return result;
         }
 
         public bool UpdateUserAccount(UserAccountDto dto)
