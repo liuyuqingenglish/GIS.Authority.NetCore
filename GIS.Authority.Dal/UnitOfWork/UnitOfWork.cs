@@ -54,6 +54,28 @@ namespace GIS.Authority.Dal.UnitOfWork
         /// </summary>
         public IEirInfoRepository EirInfoRepository => ResolveRepository<IEirInfoRepository>();
 
+
+        public IDepartmentRepository DepartmentRepository => ResolveRepository<IDepartmentRepository>();
+
+        public IOrganizeRepository OrganizeRepositiry => ResolveRepository<IOrganizeRepository>();
+
+        public IUserRepository UserRepository => ResolveRepository<IUserRepository>();
+
+        public IUserRoleGroupRepository UserRoleGroupRepository => ResolveRepository<IUserRoleGroupRepository>();
+
+        public ISystemRepository SystemRepository => ResolveRepository<ISystemRepository>();
+
+        public ISystemModuleRepository SystemModuleRepository => ResolveRepository<ISystemModuleRepository>();
+
+        public ISystemConfigRepository SystemConfigRepository => ResolveRepository<ISystemConfigRepository>();
+
+        public IRoleRepository RoleRepository => ResolveRepository<IRoleRepository>();
+
+        public IModuleRepository ModuleRepository => ResolveRepository<IModuleRepository>();
+
+        public IRolePerssionRepository RolePerssionRepository => ResolveRepository<IRolePerssionRepository>();
+
+
         /// <summary>
         /// 获取仓储
         /// </summary>

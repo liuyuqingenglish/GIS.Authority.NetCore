@@ -28,14 +28,14 @@ namespace GIS.Authority.Entity
     /// <summary>
     /// Mapper
     /// </summary>
-    public sealed class RolePermissionMapper : ClassMapper<RoleGroupPermission>
+    public sealed class RoleGroupPermissionMapper : ClassMapper<RoleGroupPermission>
     {
         /// <summary>
         /// DepartmentMapper
         /// </summary>
-        public RolePermissionMapper()
+        public RoleGroupPermissionMapper()
         {
-            Table("RolePermission");
+            Table("RoleGroupPermission");
             AutoMap();
         }
     }

@@ -1,13 +1,13 @@
 ﻿using Dapper;
 using DapperExtensions;
+using GIS.Authority.Common;
+using GIS.Authority.Dal.Base.IBaseDal;
+using GIS.Authority.Entity.Base.BaseEntity;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using GIS.Authority.Common;
-using GIS.Authority.Dal.Base.IBaseDal;
-using GIS.Authority.Entity.Base;
-using GIS.Authority.Entity.Base.BaseEntity;
+
 namespace GIS.Authority.Dal.Base.BaseDal
 {
     /// <summary>
@@ -15,7 +15,7 @@ namespace GIS.Authority.Dal.Base.BaseDal
     /// </summary>
     /// <typeparam name="T">泛型</typeparam>
     /// <typeparam name="TE">实体泛型</typeparam>
-    public class BasicRepository<T> : IBasicRepository<T> where T : BaseEntity<Guid>,new()
+    public class BasicRepository<T> : IBasicRepository<T> where T : BaseEntity<Guid>, new()
     {
         /// <summary>
         /// 表名
@@ -31,6 +31,14 @@ namespace GIS.Authority.Dal.Base.BaseDal
             using (IDbConnection conn = ConnectionFactory.CreateConnection())
             {
                 return conn.GetList<T>().ToList();
+            }
+        }
+
+        public bool Delete(PredicateGroup group)
+        {
+            using (IDbConnection conn = ConnectionFactory.CreateConnection())
+            {
+                return conn.Delete<T>(group);
             }
         }
 
@@ -53,6 +61,7 @@ namespace GIS.Authority.Dal.Base.BaseDal
                 return conn.GetPage<T>(group, SortExtension.ToSortList<T>(query.OrderList), query.PageIndex - 1, query.PageSize).ToList();
             }
         }
+
         /// <summary>
         /// 通过主键id获取数据
         /// </summary>
@@ -118,6 +127,7 @@ namespace GIS.Authority.Dal.Base.BaseDal
                 return t;
             }
         }
+
         /// <summary>
         /// 新增
         /// </summary>
@@ -126,7 +136,7 @@ namespace GIS.Authority.Dal.Base.BaseDal
         /// <returns>新增实体</returns>
         public bool Insert(T t)
         {
-            using ( var conn = ConnectionFactory.CreateConnection())
+            using (var conn = ConnectionFactory.CreateConnection())
             {
                 conn.Insert(t);
                 return true;
@@ -152,22 +162,6 @@ namespace GIS.Authority.Dal.Base.BaseDal
                 return conn.Delete(t);
             }
         }
-
-        /// <summary>
-        /// 删除
-        /// </summary>
-        /// <param name="t">删除实体</param>
-        /// <param name="conn">数据库连接</param>
-        /// <returns>删除是否成功</returns>
-        public virtual bool Delete(PredicateGroup group)
-        {
-            using (var conn = ConnectionFactory.CreateConnection())
-            {
-                
-            }
-            return true;
-        }
-
 
         /// <summary>
         /// 数目
@@ -337,6 +331,54 @@ namespace GIS.Authority.Dal.Base.BaseDal
             {
                 var count = conn.ExecuteScalar<int>(sql, new { tableName });
                 return count > 0;
+            }
+        }
+
+        public List<TResult> GetList<TResult>(string sql) where TResult : new()
+        {
+            using (IDbConnection conn = ConnectionFactory.CreateConnection())
+            {
+                conn.Open();
+                conn.BeginTransaction();
+                IDataReader reader = conn.ExecuteReader(sql);
+                DataTable table = reader.GetSchemaTable();
+                return DataConvertExtension<TResult>.GetList(table);
+            }
+        }
+
+        public TResult Get<TResult>(string sql) where TResult : new()
+        {
+            using (IDbConnection conn = ConnectionFactory.CreateConnection())
+            {
+                conn.Open();
+                conn.BeginTransaction();
+                IDataReader reader = conn.ExecuteReader(sql);
+                DataTable table = reader.GetSchemaTable();
+                return DataConvertExtension<TResult>.Get(table);
+            }
+        }
+
+        public List<TResult> TransactionResult<TResult>(string sql) where TResult : new()
+        {
+            using (var conn = ConnectionFactory.CreateConnection())
+            {
+                conn.Open();
+                var transaction = conn.BeginTransaction();
+                try
+                {
+                    IDataReader reader = conn.ExecuteReader(sql);
+                    transaction.Commit();
+                    return new List<TResult>();
+                }
+                catch
+                {
+                    transaction.Rollback();
+                    return new List<TResult>();
+                }
+                finally
+                {
+                    conn.Close();
+                }
             }
         }
     }

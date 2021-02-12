@@ -38,5 +38,16 @@ namespace GIS.Authority.Dal.UnitOfWork
         /// checkrecord
         /// </summary>
         IEirInfoRepository EirInfoRepository { get; }
+        IOrganizeRepository OrganizeRepositiry { get; }
+        IDepartmentRepository DepartmentRepository { get; }
+        IUserRepository UserRepository { get; }
+        IUserRoleGroupRepository UserRoleGroupRepository { get; }
+        ISystemRepository SystemRepository { get; }
+        ISystemModuleRepository SystemModuleRepository { get; }
+        ISystemConfigRepository SystemConfigRepository { get; }
+        IRoleRepository RoleRepository { get; }
+        IModuleRepository ModuleRepository { get; }
+
+        IRolePerssionRepository RolePerssionRepository { get; }
     }
 }
