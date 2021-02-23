@@ -36,7 +36,7 @@ namespace GIS.Authority.NetCore.Api
         [HttpGet("Login")]
         public UserAccountDto Login(UserAccountDto dto)
         {
-            return mLoginService.Login(dto);
+            return (UserAccountDto)mLoginService.Login(dto);
         }
     }
 }

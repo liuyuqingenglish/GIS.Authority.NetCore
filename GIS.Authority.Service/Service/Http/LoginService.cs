@@ -1,6 +1,7 @@
 ﻿using GIS.Authority.Common;
 using GIS.Authority.Dal.UnitOfWork;
 using GIS.Authority.Entity;
+using System;
 
 namespace GIS.Authority.Service
 {
@@ -48,17 +49,25 @@ namespace GIS.Authority.Service
             return ValidationCodeHelper.GetInstance().CreateImage(code);
         }
 
-        public UserAccountDto Login(UserAccountDto dto)
+        public object Login(UserAccountDto dto)
         {
             if (string.IsNullOrEmpty(dto.Name) || string.IsNullOrEmpty(dto.Password))
             {
-                return new UserAccountDto();
+                return new ServiceResult<Exception>(new Exception("用户名或者密码为空"));
             }
             UserAccountDto userTemp = userAccountService.GetUserDto(dto.Name, dto.Password);
-            if (userTemp != null)
+            if (userTemp == null)
             {
+                return new ServiceResult<Exception>(new Exception("当前用户不存在"));
             }
-            return new UserAccountDto();
+            if (dto.IsRemain)
+            {
+                RedisInstanceHelper.GetInstance().defaulTimeHour += 3 * 24;
+            }
+            string webToken = Guid.NewGuid().ToString();
+            userTemp.WebToken = webToken;
+            RedisInstanceHelper.GetInstance().SetKeyString(webToken, userTemp, (int)RedisInstanceHelper.GetInstance().defaulTimeHour * 3600);
+            return new ServiceResult<UserAccountDto>(userTemp);
         }
     }
 }

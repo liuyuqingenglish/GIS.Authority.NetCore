@@ -2,12 +2,12 @@
 using GIS.Authority.Entity;
 using System;
 using System.Collections.Generic;
-
+using GIS.Authority.Common;
 namespace GIS.Authority.Service
 {
     public interface IRoleService
     {
-        List<RoleDto> GetRoleDto(ProtocolQueryRole query);
+        PageResult<RoleDto> GetRoleDto(PageQueryCondition<ProtocolQueryRole,PageQuery> query);
 
         bool AddRole(RoleDto dto);
 

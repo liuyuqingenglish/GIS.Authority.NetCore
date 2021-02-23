@@ -17,7 +17,7 @@
 
 using System;
 
-namespace GIS.Authority.Common.Helper
+namespace GIS.Authority.Common
 {
     /// <summary>
     /// 时间辅助对象

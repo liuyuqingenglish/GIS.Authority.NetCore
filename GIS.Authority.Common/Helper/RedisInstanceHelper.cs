@@ -8,6 +8,7 @@ namespace GIS.Authority.Common
 
         private static CSRedisClient csClient;
 
+        public double defaulTimeHour = 0.5;
         public static RedisInstanceHelper GetInstance()
         {
             if (RedisInstance == null)
@@ -21,9 +22,14 @@ namespace GIS.Authority.Common
 
         #region 字符串
 
-        public bool SetKeyString(string key, string value, int expireSecond = -1)
+        public bool SetKeyString(string key, object value, int expireSecond = -1)
         {
             return csClient.Set(key, value, expireSecond);
+        }
+
+        public bool RenameKey(string key, string  newKey,int second)
+        {
+            return csClient.Rename(key, newKey)&& csClient.Expire(newKey,second);
         }
 
         public string GetKeyString(string key)
@@ -31,6 +37,10 @@ namespace GIS.Authority.Common
             return csClient.Get(key);
         }
 
+        public long GetKeyTtl(string key)
+        {
+            return csClient.Ttl(key);
+        }
 
         public bool DeleteKey(string key)
         {

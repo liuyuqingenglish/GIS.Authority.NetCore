@@ -2,12 +2,12 @@
 using GIS.Authority.Entity;
 using System;
 using System.Collections.Generic;
-
+using GIS.Authority.Common;
 namespace GIS.Authority.Service
 {
     public interface ISystemService
     {
-        List<SystemDto> GetSystemDto(ProtocolQuerySystem query);
+        PageResult<SystemDto> GetSystemDto( PageQueryCondition<ProtocolQuerySystem,PageQuery> query);
 
         bool AddSystem(SystemDto dto);
 

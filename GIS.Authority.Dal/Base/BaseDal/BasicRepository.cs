@@ -54,11 +54,43 @@ namespace GIS.Authority.Dal.Base.BaseDal
             }
         }
 
-        public IList<T> GetPager(PredicateGroup group, PageQuery query)
+        public PageResult<T> GetPager(PredicateGroup pg, PageQuery pageQuery)
         {
-            using (IDbConnection conn = ConnectionFactory.CreateConnection())
+            var result = new PageResult<T>();
+            ////PageIndex等于0时返回全部
+            if (pageQuery.PageIndex == 0)
             {
-                return conn.GetPage<T>(group, SortExtension.ToSortList<T>(query.OrderList), query.PageIndex - 1, query.PageSize).ToList();
+                using (var conn = ConnectionFactory.CreateConnection())
+                {
+                    result.Row = conn.GetList<T>(pg, SortExtension.ToSortList<T>(pageQuery.OrderList)).ToList();
+                    result.Total = result.Row.Count;
+                    return result;
+                }
+            }
+
+            if (pageQuery.PageIndex < 0)
+            {
+                throw new ArgumentException(nameof(pageQuery.PageIndex));
+            }
+
+            if (pageQuery.PageSize <= 0)
+            {
+                throw new ArgumentException(nameof(pageQuery.PageSize));
+            }
+
+            using (var conn = ConnectionFactory.CreateConnection())
+            {
+                var total = conn.Count<T>(pg);
+                result.Total = total;
+
+                //判断请求有数据时再查询
+                if (total > (pageQuery.PageIndex - 1) * pageQuery.PageSize)
+                {
+                    result.Row = conn.GetPage<T>(pg, SortExtension.ToSortList<T>(pageQuery.OrderList), pageQuery.PageIndex - 1, pageQuery.PageSize)
+                        .ToList();
+                }
+
+                return result;
             }
         }
 

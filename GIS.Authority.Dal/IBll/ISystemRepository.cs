@@ -24,7 +24,7 @@ namespace GIS.Authority.Dal
 {
     public interface ISystemRepository : IBasicRepository<GIS.Authority.Entity.System>
     {
-        List<GIS.Authority.Entity.System> GetSystem(PredicateGroup group, PageQuery query);
+        PageResult<GIS.Authority.Entity.System> GetSystem(PredicateGroup group, PageQuery query);
 
         bool AddSystem(GIS.Authority.Entity.System sys);
 

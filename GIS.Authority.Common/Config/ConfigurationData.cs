@@ -15,8 +15,6 @@
 * ==============================================================================
 */
 
-using GIS.Authority.Common.Helper;
-
 namespace GIS.Authority.Common
 {
     /// <summary>

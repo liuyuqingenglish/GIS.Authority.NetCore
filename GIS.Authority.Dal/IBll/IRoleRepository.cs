@@ -25,7 +25,7 @@ namespace GIS.Authority.Dal
 {
     public interface IRoleRepository : IBasicRepository<Role>
     {
-        List<Role> GetRole(PredicateGroup group, PageQuery query);
+        PageResult<Role> GetRole(PredicateGroup group, PageQuery query);
 
         bool AddRole(Role role);
 

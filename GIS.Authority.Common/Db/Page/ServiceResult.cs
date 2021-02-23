@@ -51,6 +51,18 @@ namespace GIS.Authority.Common
         }
 
         /// <summary>
+        /// 设置返回值
+        /// </summary>
+        /// <param name="result">返回结果</param>
+        public ServiceResult(string token)
+        {
+            Code = HttpStatusCode.OK;
+            Success = true;
+            Message = "请求成功";
+            Token = token;
+        }
+
+        /// <summary>
         /// 系统错误
         /// </summary>
         /// <param name="exception">错误</param>
@@ -102,5 +114,10 @@ namespace GIS.Authority.Common
         /// 附加信息
         /// </summary>
         public string Other { get; set; }
+
+        /// <summary>
+        /// token
+        /// </summary>
+        public string Token { get; set; }
     }
 }

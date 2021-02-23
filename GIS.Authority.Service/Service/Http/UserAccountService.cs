@@ -35,7 +35,7 @@ namespace GIS.Authority.Service
 
         public bool AddUserAccount(UserAccountDto dto)
         {
-            return Unit.SystemRepository.AddSystem(dto.ToModel<GIS.Authority.Entity.System>());
+            return Unit.UserRepository.AddUserAccount(dto.ToModel<GIS.Authority.Entity.UserAccount>());
         }
 
         public bool DeleteUserAccount(List<Guid> orgid)
@@ -44,14 +44,13 @@ namespace GIS.Authority.Service
             group.Operator = GroupOperator.And;
             foreach (Guid item in orgid)
             {
-                group.Predicates.Add(Predicates.Field<GIS.Authority.Entity.System>(d => d.Id, Operator.Eq, item));
+                group.Predicates.Add(Predicates.Field<GIS.Authority.Entity.UserAccount>(d => d.Id, Operator.Eq, item));
             }
-            return Unit.SystemRepository.Delete(group);
+            return Unit.UserRepository.Delete(group);
         }
 
-        public PageResult<UserAccountDto> GetUserAccountDto(PageQueryCondition<ProtocolQueryUserAccount> query)
+        public PageResult<UserAccountDto> GetUserAccountDto(PageQueryCondition<ProtocolQueryUserAccount,PageQuery> query)
         {
-            PageResult<UserAccountDto> result = new PageResult<UserAccountDto>();
             PredicateGroup group = new PredicateGroup();
             group.Operator = GroupOperator.And;
             if (!string.IsNullOrEmpty(query.Condition.OrganizeId))
@@ -66,13 +65,12 @@ namespace GIS.Authority.Service
             {
                 group.Predicates.Add(Predicates.Field<UserAccount>(d => d.Id, Operator.Eq, query.Condition.UserId));
             }
-            if (!string.IsNullOrEmpty(query.Condition.UserName))
+            if (!string.IsNullOrEmpty(query.Condition.Filter))
             {
-                group.Predicates.Add(Predicates.Field<UserAccount>(d => d.Name, Operator.Like, query.Condition.UserName));
+                group.Predicates.Add(Predicates.Field<UserAccount>(d => d.Name, Operator.Like, query.Condition.Filter));
             }
-
-            result.Row = Unit.UserRepository.GetUserAccount(group, query.Condition.Query).ToListDto<GIS.Authority.Entity.UserAccount, UserAccountDto>().ToList();
-            return result;
+            return Unit.UserRepository.GetUserAccount(group, query.Query).ToPageModel<GIS.Authority.Entity.UserAccount, UserAccountDto>();
+           
         }
 
         public bool UpdateUserAccount(UserAccountDto dto)
@@ -98,6 +96,23 @@ namespace GIS.Authority.Service
             sql.Remove(sql.Length - 1, 1);
             sql.Append($"select * from RolePerssion where {RolePermissonService.ROLE_ID} in ({sql.ToString()})");
             return Unit.RolePerssionRepository.GetList<RoleGroupPermission>(sql.ToString()).ToListDto<RoleGroupPermission, RoleGroupPermissionDto>();
+        }
+
+        public bool ForbiddenUserAccount(List<Guid> userId)
+        {
+            StringBuilder sql = new StringBuilder();
+            sql.AppendFormat("update useraccount set forbidden= true");
+            if (userId.Count > 0)
+            {
+                StringBuilder info = new StringBuilder();
+                foreach (Guid item in userId)
+                {
+                    info.Append($"'{item}',");
+                }
+                info.Remove(info.Length - 1, 1);
+                sql.Append($" where userid in ({info.ToString()})");
+            }
+            return Unit.SystemRepository.Execute(sql.ToString());
         }
     }
 }

@@ -22,16 +22,12 @@ using System.Threading.Tasks;
 using GIS.Authority.Common;
 namespace GIS.Authority.Contract
 {
-    public class ProtocolQueryUserAccount
+    public class ProtocolQueryUserAccount:TimeCondition
     {
         public string OrganizeId{ get; set; }
 
         public string DepartmentId { get; set; }
 
         public string UserId { get; set; }
-
-        public string UserName { get; set; }
-
-        public PageQuery Query { get; set; }
     }
 }

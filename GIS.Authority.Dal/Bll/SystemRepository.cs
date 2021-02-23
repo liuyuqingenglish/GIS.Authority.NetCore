@@ -37,9 +37,9 @@ namespace GIS.Authority.Dal
             return base.Delete(group);
         }
 
-        public List<Entity.System> GetSystem(PredicateGroup group, PageQuery query)
+        public PageResult<Entity.System> GetSystem(PredicateGroup group, PageQuery query)
         {
-            return base.GetPager(group, query).ToList();
+            return base.GetPager(group, query);
         }
 
         public bool UpdateSystem(Entity.System sys)

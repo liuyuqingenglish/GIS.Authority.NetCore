@@ -21,11 +21,13 @@ namespace GIS.Authority.Common
     /// 分页请求（包含条件）
     /// </summary>
     /// <typeparam name="TCondition">查询条件泛型</typeparam>
-    public class PageQueryCondition<TCondition> : PageQuery where TCondition : class, new()
+    public class PageQueryCondition<TCondition,TPageQuery>  where TCondition : class, new() where TPageQuery :class
     {
         /// <summary>
         /// 查询条件
         /// </summary>
         public TCondition Condition { get; set; }
+
+        public TPageQuery Query { get; set; }
     }
 }

@@ -26,7 +26,7 @@ namespace GIS.Authority.Dal
 {
     public interface IUserRepository : IBasicRepository<UserAccount>
     {
-        List<UserAccount> GetUserAccount(PredicateGroup group,PageQuery query);
+        PageResult<UserAccount> GetUserAccount(PredicateGroup group,PageQuery query);
         bool AddUserAccount(UserAccount user);
 
         bool UpdateUserAccount(UserAccount user);

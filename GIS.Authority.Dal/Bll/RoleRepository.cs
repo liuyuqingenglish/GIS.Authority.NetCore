@@ -36,9 +36,9 @@ namespace GIS.Authority.Dal
             return base.Delete(group);
         }
 
-        public List<Role> GetRole(PredicateGroup group, PageQuery query)
+        public PageResult<Role> GetRole(PredicateGroup group, PageQuery query)
         {
-            return base.GetPager(group, query).ToList();
+            return base.GetPager(group, query);
         }
 
         public bool UpdateRole(Role role)

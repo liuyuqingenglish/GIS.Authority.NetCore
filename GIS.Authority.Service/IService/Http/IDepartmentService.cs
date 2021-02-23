@@ -2,12 +2,12 @@
 using GIS.Authority.Entity;
 using System;
 using System.Collections.Generic;
-
+using GIS.Authority.Common;
 namespace GIS.Authority.Service
 {
     public interface IDepartmentService
     {
-        List<DepartmentDto> GetDepartmentDto(ProtocolQueryDepartment query);
+        PageResult<DepartmentDto> GetDepartmentDto( PageQueryCondition<ProtocolQueryDepartment,PageQuery> query);
 
         bool AddDepartment(DepartmentDto dto);
 

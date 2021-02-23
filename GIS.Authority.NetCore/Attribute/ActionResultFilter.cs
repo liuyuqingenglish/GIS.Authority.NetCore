@@ -1,5 +1,4 @@
 ﻿using GIS.Authority.Common;
-using GIS.Authority.Common.Helpers;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
@@ -25,10 +24,19 @@ namespace GIS.Authority.NetCore
                 return;
             }
             ServiceResult<object> result = null;
-       
+
             if (context.Exception == null)
             {
-                if (context.HttpContext.Response.StatusCode != (int)HttpStatusCode.OK)
+                if (context.HttpContext.Response.StatusCode.Equals(HttpStatusCode.NotFound))
+                {
+                    result = new ServiceResult<object>
+                    {
+                        Success = false,
+                        Code = (HttpStatusCode)context.HttpContext.Response.StatusCode,
+                        Message = $"对应资源未找到,请重试"
+                    };
+                }
+                else if (context.HttpContext.Response.StatusCode != (int)HttpStatusCode.OK)
                 {
                     result = new ServiceResult<object>
                     {
@@ -82,7 +90,6 @@ namespace GIS.Authority.NetCore
         private void RecordLog(ActionExecutedContext context)
         {
             Log.LogHelper.AddLog(Log.ELogLevel.Debug, $"远程ip：{context.HttpContext.Request.HttpContext.Connection.RemoteIpAddress},请求地址：{context.HttpContext.Request.GetEncodedUrl()},请求方法:{context.ActionDescriptor.DisplayName}");
-
         }
     }
 }

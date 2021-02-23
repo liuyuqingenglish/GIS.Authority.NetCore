@@ -43,18 +43,18 @@ namespace GIS.Authority.Service
             return Unit.SystemRepository.Delete(group);
         }
 
-        public List<SystemDto> GetSystemDto(ProtocolQuerySystem query)
+        public PageResult<SystemDto> GetSystemDto( PageQueryCondition<ProtocolQuerySystem,PageQuery> query)
         {
             PredicateGroup group = new PredicateGroup();
-            if (!string.IsNullOrEmpty(query.SystemId))
+            if (!string.IsNullOrEmpty(query.Condition.SystemId))
             {
-                group.Predicates.Add(Predicates.Field<Department>(d => d.Id, Operator.Eq, query.SystemId));
+                group.Predicates.Add(Predicates.Field<Department>(d => d.Id, Operator.Eq, query.Condition.SystemId));
             }
-            if (!string.IsNullOrEmpty(query.SystemName))
+            if (!string.IsNullOrEmpty(query.Condition.SystemName))
             {
-                group.Predicates.Add(Predicates.Field<Department>(d => d.Name, Operator.Eq, query.SystemName));
+                group.Predicates.Add(Predicates.Field<Department>(d => d.Name, Operator.Eq, query.Condition.SystemName));
             }
-            return Unit.SystemRepository.GetSystem(group, query.Query).ToListDto<GIS.Authority.Entity.System, SystemDto>().ToList();
+            return Unit.SystemRepository.GetSystem(group, query.Query).ToPageModel<GIS.Authority.Entity.System, SystemDto>();
         }
 
         public bool UpdateSystem(SystemDto dto)

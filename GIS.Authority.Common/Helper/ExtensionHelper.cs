@@ -26,7 +26,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 
-namespace GIS.Authority.Common.Helper
+namespace GIS.Authority.Common
 {
     /// <summary>
     /// 可序列化类型接口

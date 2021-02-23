@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using GIS.Authority.Log;
 
-namespace GIS.Authority.Core.Common.Helpers
+namespace GIS.Authority.Core.Common
 {
     /// <summary>
     /// 线程管理的基类

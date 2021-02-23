@@ -11,6 +11,6 @@ namespace GIS.Authority.Service
 
         bool CheckRandomCode(string ssToken, string code);
 
-        UserAccountDto Login(UserAccountDto dto);
+        object Login(UserAccountDto dto);
     }
 }

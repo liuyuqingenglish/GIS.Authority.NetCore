@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace GIS.Authority.Common.Helpers
+namespace GIS.Authority.Common
 {
     /// <summary>
     /// Json帮助类

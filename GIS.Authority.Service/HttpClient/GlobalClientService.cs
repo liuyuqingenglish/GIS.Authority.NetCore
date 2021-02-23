@@ -3,7 +3,6 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using GIS.Authority.Common;
-using GIS.Authority.Common.Helpers;
 
 namespace GIS.Authority.Service
 {

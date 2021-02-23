@@ -25,7 +25,7 @@ namespace GIS.Authority.Dal
 {
     public interface IRolePerssionRepository : IBasicRepository<RoleGroupPermission>
     {
-        List<RoleGroupPermission> GetRolePerssion(PredicateGroup group, PageQuery query);
+        PageResult<RoleGroupPermission> GetRolePerssion(PredicateGroup group, PageQuery query);
 
         bool AddRolePerssion(RoleGroupPermission rolePerssion);
 

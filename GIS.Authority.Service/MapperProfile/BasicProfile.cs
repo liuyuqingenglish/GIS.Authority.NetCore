@@ -17,7 +17,7 @@
 
 using AutoMapper;
 using System;
-using GIS.Authority.Common.Helper;
+using GIS.Authority.Common;
 using GIS.Authority.Entity;
 
 namespace GIS.Authority.Service

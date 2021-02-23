@@ -40,7 +40,7 @@ namespace GIS.Authority.Dal.Base.IBaseDal
         /// <param name="group"></param>
         /// <param name="query"></param>
         /// <returns></returns>
-        IList<T> GetPager(PredicateGroup group, PageQuery query);
+        PageResult<T> GetPager(PredicateGroup group, PageQuery query);
 
 
         /// <summary>

@@ -48,19 +48,19 @@ namespace GIS.Authority.Service
             return Unit.SystemRepository.Delete(group);
         }
 
-        public List<OrganizationDto> GetOrganizeDto(ProtocolQueryOrganize query)
+        public PageResult<OrganizationDto> GetOrganizeDto(PageQueryCondition<ProtocolQueryOrganize,PageQuery> query)
         {
             PredicateGroup group = new PredicateGroup();
             group.Operator = GroupOperator.And;
-            if (!string.IsNullOrEmpty(query.SystemId))
+            if (!string.IsNullOrEmpty(query.Condition.SystemId))
             {
-                group.Predicates.Add(Predicates.Field<Department>(d => d.Id, Operator.Eq, query.SystemId));
+                group.Predicates.Add(Predicates.Field<Department>(d => d.Id, Operator.Eq, query.Condition.SystemId));
             }
-            if (!string.IsNullOrEmpty(query.OrganizeName))
+            if (!string.IsNullOrEmpty(query.Condition.OrganizeName))
             {
-                group.Predicates.Add(Predicates.Field<Department>(d => d.Name, Operator.Eq, query.OrganizeName));
+                group.Predicates.Add(Predicates.Field<Department>(d => d.Name, Operator.Eq, query.Condition.OrganizeName));
             }
-            return Unit.OrganizeRepositiry.GetOrganize(group, query.Query).ToListDto<GIS.Authority.Entity.Organization, OrganizationDto>().ToList();
+            return Unit.OrganizeRepositiry.GetOrganize(group, query.Query).ToPageModel<GIS.Authority.Entity.Organization, OrganizationDto>();
         }
 
         public bool UpdateOrganize(OrganizationDto dto)

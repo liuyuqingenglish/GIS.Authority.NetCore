@@ -26,7 +26,7 @@ namespace GIS.Authority.Dal
     
     public interface IDepartmentRepository : IBasicRepository<Department>
     {
-        List<Department> GetDepartment(PredicateGroup group,PageQuery query);
+        PageResult<Department> GetDepartment(PredicateGroup group,PageQuery query);
 
         List<Department> GetDepartmentList();
         bool AddDepartment(Department depart);

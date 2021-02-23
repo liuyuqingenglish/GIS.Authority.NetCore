@@ -44,22 +44,22 @@ namespace GIS.Authority.Service
             return Unit.DepartmentRepository.Delete(group);
         }
 
-        public List<DepartmentDto> GetDepartmentDto(ProtocolQueryDepartment query)
+        public PageResult<DepartmentDto> GetDepartmentDto(PageQueryCondition<ProtocolQueryDepartment,PageQuery> query)
         {
             PredicateGroup group = new PredicateGroup();
-            if (!string.IsNullOrEmpty(query.DepartmentId))
+            if (!string.IsNullOrEmpty(query.Condition.DepartmentId))
             {
-                group.Predicates.Add(Predicates.Field<Department>(d => d.Id, Operator.Eq, query.DepartmentId));
+                group.Predicates.Add(Predicates.Field<Department>(d => d.Id, Operator.Eq, query.Condition.DepartmentId));
             }
-            if (!string.IsNullOrEmpty(query.OrganizeId))
+            if (!string.IsNullOrEmpty(query.Condition.OrganizeId))
             {
-                group.Predicates.Add(Predicates.Field<Department>(d => d.OrganizationId, Operator.Eq, query.OrganizeId));
+                group.Predicates.Add(Predicates.Field<Department>(d => d.OrganizationId, Operator.Eq, query.Condition.OrganizeId));
             }
-            if (!string.IsNullOrEmpty(query.DepartmentName))
+            if (!string.IsNullOrEmpty(query.Condition.DepartmentName))
             {
-                group.Predicates.Add(Predicates.Field<Department>(d => d.Name, Operator.Eq, query.DepartmentName));
+                group.Predicates.Add(Predicates.Field<Department>(d => d.Name, Operator.Eq, query.Condition.DepartmentName));
             }
-            return Unit.DepartmentRepository.GetDepartment(group, query.Query).ToListDto<Department, DepartmentDto>().ToList();
+            return Unit.DepartmentRepository.GetDepartment(group, query.Query).ToPageModel<Department, DepartmentDto>();
         }
 
         public List<DepartmentDto> GetDepartmentDto()

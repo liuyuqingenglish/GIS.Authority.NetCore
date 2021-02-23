@@ -26,7 +26,7 @@ namespace GIS.Authority.Dal
     public interface ISystemConfigRepository : IBasicRepository<SystemConfig>
     {
 
-        List<SystemConfig> GetSystemConfig(PredicateGroup group, PageQuery query);
+        PageResult<SystemConfig> GetSystemConfig(PredicateGroup group, PageQuery query);
 
         bool AddSystemConfig(SystemConfig config);
 

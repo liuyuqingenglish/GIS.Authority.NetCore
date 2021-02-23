@@ -48,23 +48,23 @@ namespace GIS.Authority.Service
             return Unit.SystemRepository.Delete(group);
         }
 
-        public List<RoleDto> GetRoleDto(ProtocolQueryRole query)
+        public PageResult<RoleDto> GetRoleDto( PageQueryCondition<ProtocolQueryRole,PageQuery> query)
         {
             PredicateGroup group = new PredicateGroup();
             group.Operator = GroupOperator.And;
-            if (!string.IsNullOrEmpty(query.OrganizeId))
+            if (!string.IsNullOrEmpty(query.Condition.OrganizeId))
             {
-                group.Predicates.Add(Predicates.Field<Role>(d => d.OrganizationId, Operator.Eq, query.OrganizeId));
+                group.Predicates.Add(Predicates.Field<Role>(d => d.OrganizationId, Operator.Eq, query.Condition.OrganizeId));
             }
-            if (!string.IsNullOrEmpty(query.OrganizeId))
+            if (!string.IsNullOrEmpty(query.Condition.OrganizeId))
             {
-                group.Predicates.Add(Predicates.Field<Role>(d => d.Id, Operator.Eq, query.RoleId));
+                group.Predicates.Add(Predicates.Field<Role>(d => d.Id, Operator.Eq, query.Condition.RoleId));
             }
-            if (!string.IsNullOrEmpty(query.RoleName))
+            if (!string.IsNullOrEmpty(query.Condition.RoleName))
             {
-                group.Predicates.Add(Predicates.Field<Role>(d => d.Name, Operator.Like, query.RoleName));
+                group.Predicates.Add(Predicates.Field<Role>(d => d.Name, Operator.Like, query.Condition.RoleName));
             }
-            return Unit.RoleRepository.GetRole(group, query.Query).ToListDto<GIS.Authority.Entity.Role, RoleDto>().ToList();
+            return Unit.RoleRepository.GetRole(group, query.Query).ToPageModel<GIS.Authority.Entity.Role, RoleDto>();
         }
 
         public bool UpdateRole(RoleDto dto)

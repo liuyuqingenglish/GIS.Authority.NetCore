@@ -26,7 +26,7 @@ namespace GIS.Authority.Dal
 {
     public interface IOrganizeRepository : IBasicRepository<Organization>
     {
-        List<Organization> GetOrganize(PredicateGroup group,PageQuery query);
+        PageResult<Organization> GetOrganize(PredicateGroup group,PageQuery query);
         bool AddOrganize(Organization org);
 
         bool UpdateOrganize(Organization org);

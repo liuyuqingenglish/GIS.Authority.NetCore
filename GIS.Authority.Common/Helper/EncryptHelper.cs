@@ -17,7 +17,7 @@
 
 using GIS.Authority.Encryption;
 
-namespace GIS.Authority.Common.Helper
+namespace GIS.Authority.Common
 {
     /// <summary>
     /// 加解密辅助对象

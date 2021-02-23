@@ -7,13 +7,16 @@ namespace GIS.Authority.Service
 {
     public interface IUserAccountService
     {
-        PageResult<UserAccountDto> GetUserAccountDto(PageQueryCondition<ProtocolQueryUserAccount> query);
+        PageResult<UserAccountDto> GetUserAccountDto(PageQueryCondition<ProtocolQueryUserAccount,PageQuery> query);
 
         bool AddUserAccount(UserAccountDto dto);
 
         bool UpdateUserAccount(UserAccountDto dto);
 
         bool DeleteUserAccount(List<Guid> userId);
+
+        bool ForbiddenUserAccount(List<Guid> userId);
+
         UserAccountDto GetUserDto(string account, string password);
 
         List<RoleGroupPermissionDto> GetUserRolePermission(Guid userId);

@@ -37,9 +37,9 @@ namespace GIS.Authority.Dal
             return base.Delete(group);
         }
 
-        public List<UserAccount> GetUserAccount(PredicateGroup group, PageQuery query)
+        public PageResult<UserAccount> GetUserAccount(PredicateGroup group, PageQuery query)
         {
-            return base.GetPager(group, query).ToList();
+            return base.GetPager(group, query);
         }
 
         public bool UpdateUserAccount(UserAccount user)
