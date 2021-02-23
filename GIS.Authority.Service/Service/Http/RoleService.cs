@@ -34,7 +34,7 @@ namespace GIS.Authority.Service
 
         public bool AddRole(RoleDto dto)
         {
-            return Unit.SystemRepository.AddSystem(dto.ToModel<GIS.Authority.Entity.System>());
+            return Unit.RoleRepository.AddRole(dto.ToModel<GIS.Authority.Entity.Role>());
         }
 
         public bool DeleteRole(List<Guid> orgid)
@@ -45,7 +45,7 @@ namespace GIS.Authority.Service
             {
                 group.Predicates.Add(Predicates.Field<GIS.Authority.Entity.System>(d => d.Id, Operator.Eq, item));
             }
-            return Unit.SystemRepository.Delete(group);
+            return Unit.RoleRepository.Delete(group);
         }
 
         public PageResult<RoleDto> GetRoleDto( PageQueryCondition<ProtocolQueryRole,PageQuery> query)

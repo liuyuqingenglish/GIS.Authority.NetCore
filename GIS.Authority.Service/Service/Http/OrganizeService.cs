@@ -34,7 +34,7 @@ namespace GIS.Authority.Service
 
         public bool AddOrganize(OrganizationDto dto)
         {
-            return Unit.SystemRepository.AddSystem(dto.ToModel<GIS.Authority.Entity.System>());
+            return Unit.OrganizeRepositiry.AddOrganize(dto.ToModel<GIS.Authority.Entity.Organization>());
         }
 
         public bool DeleteOrganize(List<Guid> orgid)
@@ -43,9 +43,9 @@ namespace GIS.Authority.Service
             group.Operator = GroupOperator.And;
             foreach (Guid item in orgid)
             {
-                group.Predicates.Add(Predicates.Field<GIS.Authority.Entity.System>(d => d.Id, Operator.Eq, item));
+                group.Predicates.Add(Predicates.Field<GIS.Authority.Entity.Organization>(d => d.Id, Operator.Eq, item));
             }
-            return Unit.SystemRepository.Delete(group);
+            return Unit.OrganizeRepositiry.Delete(group);
         }
 
         public PageResult<OrganizationDto> GetOrganizeDto(PageQueryCondition<ProtocolQueryOrganize,PageQuery> query)
