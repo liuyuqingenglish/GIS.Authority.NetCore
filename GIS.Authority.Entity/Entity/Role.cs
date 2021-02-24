@@ -18,6 +18,11 @@ namespace GIS.Authority.Entity
         /// 组织id
         /// </summary>
         public int OrganizationId { get; set; }
+
+        /// <summary>
+        /// 角色组
+        /// </summary>
+        public int[] RoleGroup { get; set; }
     }
 
     /// <summary>

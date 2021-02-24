@@ -253,7 +253,7 @@ CREATE TABLE IF NOT EXISTS UserRoleGroup(
     CreateUserId UUID,
     LastUpdateUserId UUID,
     UserId UUID NOT NULL,
-    RoleGroup integer NOT NULL
+    RoleGroup integer[] NOT NULL
 );
 CREATE INDEX UserRoleGroup_UserId_Index ON UserRoleGroup(UserId);
 CREATE INDEX UserRoleGroup_RoleId_Index ON UserRoleGroup(RoleGroup);
