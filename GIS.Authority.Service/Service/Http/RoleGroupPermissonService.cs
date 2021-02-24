@@ -26,10 +26,10 @@ using System.Text;
 using GIS.Authority.Common;
 namespace GIS.Authority.Service
 {
-    public class RolePermissonService : BaseService, IRolePermissonService
+    public class RoleGroupPermissonService : BaseService, IRoleGroupPermissonService
     {
         public const string ROLE_ID = "roleid";
-        public RolePermissonService(IUnitOfWork unit) : base(unit)
+        public RoleGroupPermissonService(IUnitOfWork unit) : base(unit)
         {
         }
 

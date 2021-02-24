@@ -19,36 +19,29 @@ using DapperExtensions;
 using GIS.Authority.Common;
 using GIS.Authority.Dal.Base.BaseDal;
 using GIS.Authority.Entity;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace GIS.Authority.Dal
 {
-    public class UserRoleGroupRepository : BasicRepository<UserRole>, IUserRoleRepository
+    public class RoleGroupRepository : BasicRepository<RoleGroup>, IRoleGroupRepository
     {
-        public bool AddUserRoleGroup(UserRole UserRoleGroup)
+        public bool AddRoleGroup(RoleGroup role)
         {
-            return base.Insert(UserRoleGroup);
+            return base.Insert(role);
         }
 
-        public bool DeleteUserRoleGroup(PredicateGroup group)
+        public bool DeleteRoleGroup(PredicateGroup group)
         {
             return base.Delete(group);
         }
 
-        public PageResult<UserRole> GetUserRoleGroup(PredicateGroup group, PageQuery query)
+        public PageResult<RoleGroup> GetRoleGroup(PredicateGroup group, PageQuery query)
         {
-            return base.FindByPage(group, query);
+            return base.GetPager(group, query);
         }
 
-        public bool UpdateUserRoleGroup(UserRole UserRoleGroup)
+        public bool UpdateRoleGroup(RoleGroup role)
         {
-            return base.Update(UserRoleGroup);
-        }
-
-        public List<UserRole> GetUserRoleGroup(PredicateGroup group)
-        {
-            return base.GetList(group).ToList();
+            return base.Update(role);
         }
     }
 }

@@ -26,9 +26,7 @@ using GIS.Authority.Dal.UnitOfWork;
 using GIS.Authority.Common;
 namespace GIS.Authority.Service
 {
-    /// <summary>
-    /// adfsfd
-    /// </summary>
+   
     public class DepartmentService : BaseService, IDepartmentService
     {
         public DepartmentService(IUnitOfWork unit) : base(unit)

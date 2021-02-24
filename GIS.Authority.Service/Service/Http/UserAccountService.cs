@@ -86,15 +86,15 @@ namespace GIS.Authority.Service
         public List<RoleGroupPermissionDto> GetUserRolePermission(Guid userid)
         {
             PredicateGroup group = new PredicateGroup();
-            group.Predicates.Add(Predicates.Field<UserRoleGroup>(u => u.UserId, Operator.Eq, userid));
-            List<UserRoleGroup> roleList = Unit.UserRoleGroupRepository.GetList(group).ToList();
+            group.Predicates.Add(Predicates.Field<UserRole>(u => u.UserId, Operator.Eq, userid));
+            List<UserRole> roleList = Unit.UserRoleGroupRepository.GetList(group).ToList();
             StringBuilder sql = new StringBuilder();
-            foreach (UserRoleGroup item in roleList)
+            foreach (UserRole item in roleList)
             {
                 sql.Append($"{item.Id},");
             }
             sql.Remove(sql.Length - 1, 1);
-            sql.Append($"select * from RolePerssion where {RolePermissonService.ROLE_ID} in ({sql.ToString()})");
+            sql.Append($"select * from RolePerssion where {RoleGroupPermissonService.ROLE_ID} in ({sql.ToString()})");
             return Unit.RolePerssionRepository.GetList<RoleGroupPermission>(sql.ToString()).ToListDto<RoleGroupPermission, RoleGroupPermissionDto>();
         }
 

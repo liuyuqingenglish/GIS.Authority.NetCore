@@ -41,13 +41,13 @@ namespace GIS.Authority.Dal.UnitOfWork
         IOrganizeRepository OrganizeRepositiry { get; }
         IDepartmentRepository DepartmentRepository { get; }
         IUserRepository UserRepository { get; }
-        IUserRoleGroupRepository UserRoleGroupRepository { get; }
+        IUserRoleRepository UserRoleGroupRepository { get; }
         ISystemRepository SystemRepository { get; }
         ISystemModuleRepository SystemModuleRepository { get; }
         ISystemConfigRepository SystemConfigRepository { get; }
         IRoleRepository RoleRepository { get; }
         IModuleRepository ModuleRepository { get; }
 
-        IRolePerssionRepository RolePerssionRepository { get; }
+        IRoleGroupPerssionRepository RolePerssionRepository { get; }
     }
 }

@@ -17,22 +17,20 @@
 
 using DapperExtensions;
 using GIS.Authority.Common;
-using GIS.Authority.Dal.Base.IBaseDal;
 using GIS.Authority.Entity;
+using GIS.Authority.Dal.Base.IBaseDal;
 using System.Collections.Generic;
 
 namespace GIS.Authority.Dal
 {
-    public interface IUserRoleGroupRepository : IBasicRepository<UserRoleGroup>
+    public interface IRoleGroupRepository : IBasicRepository<RoleGroup>
     {
-        PageResult<UserRoleGroup> GetUserRoleGroup(PredicateGroup group, PageQuery query);
+        PageResult<RoleGroup> GetRoleGroup(PredicateGroup group, PageQuery query);
 
-        bool AddUserRoleGroup(UserRoleGroup UserRoleGroup);
+        bool AddRoleGroup(RoleGroup role);
 
-        bool UpdateUserRoleGroup(UserRoleGroup UserRoleGroup);
+        bool UpdateRoleGroup(RoleGroup role);
 
-        bool DeleteUserRoleGroup(PredicateGroup group);
-
-        List<UserRoleGroup> GetUserRoleGroup(PredicateGroup group);
+        bool DeleteRoleGroup(PredicateGroup group);
     }
 }

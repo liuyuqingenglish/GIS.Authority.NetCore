@@ -23,7 +23,7 @@ using GIS.Authority.Dal.Base.IBaseDal;
 
 namespace GIS.Authority.Dal
 {
-    public interface IRolePerssionRepository : IBasicRepository<RoleGroupPermission>
+    public interface IRoleGroupPerssionRepository : IBasicRepository<RoleGroupPermission>
     {
         PageResult<RoleGroupPermission> GetRolePerssion(PredicateGroup group, PageQuery query);
 

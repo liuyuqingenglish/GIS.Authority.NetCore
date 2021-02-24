@@ -6,7 +6,7 @@ namespace GIS.Authority.Entity
     /// <summary>
     /// 部门
     /// </summary>
-    public class UserRoleGroup : CommonEntity
+    public class UserRole : CommonEntity
     {
         /// <summary>
         /// 系统id
@@ -16,22 +16,22 @@ namespace GIS.Authority.Entity
         /// <summary>
         /// 模型id
         /// </summary>
-        public int[] RoleGroup { get; set; }
+        public int[] Role { get; set; }
 
     }
 
     /// <summary>
     /// Mapper
     /// </summary>
-    public sealed class UserRoleGroupGroupMapper : ClassMapper<UserRoleGroupGroupDto>
+    public sealed class UserRoleMapper : ClassMapper<UserRoleDto>
     {
         /// <summary>
         /// OrganizationMapper
         /// </summary>
-        public UserRoleGroupGroupMapper()
+        public UserRoleMapper()
         {
             ///映射表名
-            Table("UserRoleGroupGroup");
+            Table("UserRole");
             ///指定主键
             Map(x => x.Id).Key(KeyType.Guid);
             Map(x => x.Name).Ignore();

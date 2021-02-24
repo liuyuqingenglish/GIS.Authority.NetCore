@@ -244,16 +244,16 @@ INSERT INTO useraccount(Id,CreateTime,Name,Account,Code,Password,OrganizationId,
 VALUES(uuid_generate_v1(),now(),'admin','sAdmin','admin','0192023A7BBD73250516F069DF18B500','00000000-0000-0000-0000-000000000000','00000000-0000-0000-0000-000000000000',0,0,0,false);
 
 
-DROP TABLE IF EXISTS UserRoleGroup;
+DROP TABLE IF EXISTS UserRole;
 --用户角色表
-CREATE TABLE IF NOT EXISTS UserRoleGroup(
+CREATE TABLE IF NOT EXISTS UserRole(
 	Id UUID PRIMARY KEY NOT NULL,
 	CreateTime TIMESTAMP WITHOUT TIME ZONE,
 	LastUpdateTime TIMESTAMP WITHOUT TIME ZONE,
     CreateUserId UUID,
     LastUpdateUserId UUID,
     UserId UUID NOT NULL,
-    RoleGroup integer[] NOT NULL
+    Role integer[] NOT NULL
 );
-CREATE INDEX UserRoleGroup_UserId_Index ON UserRoleGroup(UserId);
-CREATE INDEX UserRoleGroup_RoleId_Index ON UserRoleGroup(RoleGroup);
+CREATE INDEX UserRoleGroup_UserId_Index ON UserRole(UserId);
+CREATE INDEX UserRoleGroup_RoleId_Index ON UserRole(Role);

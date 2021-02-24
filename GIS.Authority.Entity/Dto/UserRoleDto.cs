@@ -17,7 +17,7 @@
 using System;
 namespace GIS.Authority.Entity
 {
-    public class UserRoleGroupGroupDto : BaseDto
+    public class UserRoleDto : BaseDto
     {
 
         /// <summary>

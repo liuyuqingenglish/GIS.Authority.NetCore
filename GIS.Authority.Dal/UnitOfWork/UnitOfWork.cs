@@ -61,7 +61,7 @@ namespace GIS.Authority.Dal.UnitOfWork
 
         public IUserRepository UserRepository => ResolveRepository<IUserRepository>();
 
-        public IUserRoleGroupRepository UserRoleGroupRepository => ResolveRepository<IUserRoleGroupRepository>();
+        public IUserRoleRepository UserRoleGroupRepository => ResolveRepository<IUserRoleRepository>();
 
         public ISystemRepository SystemRepository => ResolveRepository<ISystemRepository>();
 
@@ -73,7 +73,7 @@ namespace GIS.Authority.Dal.UnitOfWork
 
         public IModuleRepository ModuleRepository => ResolveRepository<IModuleRepository>();
 
-        public IRolePerssionRepository RolePerssionRepository => ResolveRepository<IRolePerssionRepository>();
+        public IRoleGroupPerssionRepository RolePerssionRepository => ResolveRepository<IRoleGroupPerssionRepository>();
 
 
         /// <summary>

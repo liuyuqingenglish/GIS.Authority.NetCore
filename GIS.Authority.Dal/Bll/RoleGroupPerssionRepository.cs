@@ -25,7 +25,7 @@ using System.Text;
 
 namespace GIS.Authority.Dal
 {
-    public class RolePerssionRepository : BasicRepository<RoleGroupPermission>, IRolePerssionRepository
+    public class RoleGroupPerssionRepository : BasicRepository<RoleGroupPermission>, IRoleGroupPerssionRepository
     {
         public bool AddRolePerssion(RoleGroupPermission rolePerssion)
         {

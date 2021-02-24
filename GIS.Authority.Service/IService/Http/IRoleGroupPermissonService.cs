@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace GIS.Authority.Service
 {
-    public interface IRolePermissonService
+    public interface IRoleGroupPermissonService
     {
         List<RoleGroupPermissionDto> GetRolePermissionDto(ProtocolQueryRolePermision query);
 
