@@ -69,5 +69,11 @@ namespace GIS.Authority.Service
             RedisInstanceHelper.GetInstance().SetKeyString(webToken, userTemp, (int)RedisInstanceHelper.GetInstance().defaulTimeHour * 3600);
             return new ServiceResult<UserAccountDto>(userTemp);
         }
+
+
+        public bool LoginOut(string token)
+        {
+            return RedisInstanceHelper.GetInstance().DeleteKey(token);
+        }
     }
 }

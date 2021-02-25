@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Net.Http;
 namespace GIS.Authority.NetCore.Api
 {
-    [Route("api/[controller]")]
+    [Route("Api/[controller]")]
     [ApiController]
     public class LoginController : BaseApiControl
     {
@@ -31,12 +31,19 @@ namespace GIS.Authority.NetCore.Api
             return mLoginService.CheckRandomCode(ssToken, code);
         }
 
-        [HttpGet]
+        [HttpPost]
         [SkipAction]
         [HttpGet("Login")]
         public UserAccountDto Login(UserAccountDto dto)
         {
             return (UserAccountDto)mLoginService.Login(dto);
+        }
+
+        [HttpGet]
+        [HttpGet("LoginOut")]
+        public bool LoginOut(string token)
+        {
+            return mLoginService.LoginOut(token);
         }
     }
 }

@@ -152,9 +152,9 @@ CREATE TABLE IF NOT EXISTS Role(
     OrganizationId UUID NOT NULL
 );
 CREATE INDEX Role_OrganizationId_Index ON Role(OrganizationId);
-insert into Role (Id,CreateTime,LastUpdateTime,RoleGroup,Name,OrganizationId) values ('b182e4a3-48c9-4d17-baf0-1221accb3673',now(),now(),0,'超级管理员','a8a1d2e2-c4e8-4760-8ca1-e9f4ba6cb6f6');
-insert into Role (Id,CreateTime,LastUpdateTime,RoleGroup,Name,OrganizationId) values ('1754cd9f-2c66-4525-ad42-74f73613b6f3',now(),now(),1,'管理员','a8a1d2e2-c4e8-4760-8ca1-e9f4ba6cb6f6');
-insert into Role (Id,CreateTime,LastUpdateTime,RoleGroup,Name,OrganizationId) values (uuid_generate_v1(),now(),now(),2,'移动端用户','a8a1d2e2-c4e8-4760-8ca1-e9f4ba6cb6f6');
+insert into Role (Id,CreateTime,LastUpdateTime,RoleGroup,Name,OrganizationId) values ('b182e4a3-48c9-4d17-baf0-1221accb3673',now(),now(),array[0],'超级管理员','a8a1d2e2-c4e8-4760-8ca1-e9f4ba6cb6f6');
+insert into Role (Id,CreateTime,LastUpdateTime,RoleGroup,Name,OrganizationId) values ('1754cd9f-2c66-4525-ad42-74f73613b6f3',now(),now(),array[1],'管理员','a8a1d2e2-c4e8-4760-8ca1-e9f4ba6cb6f6');
+insert into Role (Id,CreateTime,LastUpdateTime,RoleGroup,Name,OrganizationId) values (uuid_generate_v1(),now(),now(),array[2],'移动端用户','a8a1d2e2-c4e8-4760-8ca1-e9f4ba6cb6f6');
 
 
 DROP TABLE IF EXISTS RoleGroup;
@@ -176,9 +176,9 @@ CREATE TABLE IF NOT EXISTS RoleGroup(
 CREATE INDEX RoleGroup_id_Index ON RoleGroup(Id);
 CREATE INDEX RoleGroup_OrganizationId_Index ON RoleGroup(OrganizationId);
 
-insert into RoleGroup (Id,CreateTime,LastUpdateTime,RoleGroup,Name,OrganizationId) values (uuid_generate_v1(),now(),now(),0,'超级管理员组','a8a1d2e2-c4e8-4760-8ca1-e9f4ba6cb6f6');
-insert into RoleGroup (Id,CreateTime,LastUpdateTime,RoleGroup,Name,OrganizationId) values (uuid_generate_v1(),now(),now(),1,'管理员组','a8a1d2e2-c4e8-4760-8ca1-e9f4ba6cb6f6');
-insert into RoleGroup (Id,CreateTime,LastUpdateTime,RoleGroup,Name,OrganizationId) values (uuid_generate_v1(),now(),now(),2,'移动端用户组','a8a1d2e2-c4e8-4760-8ca1-e9f4ba6cb6f6');
+insert into RoleGroup (Id,CreateTime,LastUpdateTime,RoleType,Name,OrganizationId) values (uuid_generate_v1(),now(),now(),0,'超级管理员组','a8a1d2e2-c4e8-4760-8ca1-e9f4ba6cb6f6');
+insert into RoleGroup (Id,CreateTime,LastUpdateTime,RoleType,Name,OrganizationId) values (uuid_generate_v1(),now(),now(),1,'管理员组','a8a1d2e2-c4e8-4760-8ca1-e9f4ba6cb6f6');
+insert into RoleGroup (Id,CreateTime,LastUpdateTime,RoleType,Name,OrganizationId) values (uuid_generate_v1(),now(),now(),2,'移动端用户组','a8a1d2e2-c4e8-4760-8ca1-e9f4ba6cb6f6');
 
 DROP TABLE IF EXISTS RoleGroupPermission;
 --角色模块(权限)
@@ -189,7 +189,7 @@ CREATE TABLE IF NOT EXISTS RoleGroupPermission(
     CreateUserId UUID,
     LastUpdateUserId UUID,
     RoleGroupId UUID NOT NULL,
-    ModuleId UUID NOT NULL,
+    ModuleId UUID NOT NULL
 );
 
 CREATE INDEX RoleGroupPermission_RoleGroupId_Index ON RoleGroupPermission(RoleGroupId);

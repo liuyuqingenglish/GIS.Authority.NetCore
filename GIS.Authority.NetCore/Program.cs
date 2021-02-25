@@ -3,13 +3,16 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using GIS.Authority.Common;
-
+using System.Net.Sockets;
+using System.Net;
 namespace GIS.Authority.NetCore
 {
     public class Program
     {
         public static void Main(string[] args)
         {
+           // NTPClient client = new NTPClient("localhost");
+           // client.Connect(true);
             CreateWebHostBuilder(args).Build().Run();
         }
 
