@@ -29,6 +29,26 @@
             <param name="context"></param>
             <returns></returns>
         </member>
+        <member name="P:GIS.Authority.NetCore.ConsulConfig.ConsulIp">
+            <summary>
+            consul 注册中心ip
+            </summary>
+        </member>
+        <member name="P:GIS.Authority.NetCore.ConsulConfig.ConsulPort">
+            <summary>
+            consul 注册中心port
+            </summary>
+        </member>
+        <member name="P:GIS.Authority.NetCore.ConsulConfig.HealthCheck">
+            <summary>
+            健康检查
+            </summary>
+        </member>
+        <member name="P:GIS.Authority.NetCore.ConsulConfig.ServiceName">
+            <summary>
+            服务名称
+            </summary>
+        </member>
         <member name="M:GIS.Authority.NetCore.Api.FileController.DownLoadFile(System.String)">
             <summary>
             下载文件
